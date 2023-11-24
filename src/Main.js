@@ -17,6 +17,9 @@ import db from './firebase';
 import { v4 as uuidv4 } from 'uuid';
 import { AuthContext } from './auth/Auth';
 import { AuthCredential } from 'firebase/auth';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+
 
 function SnapshotFirebaseAdvanced() {
   const colletionRef = collection(db, 'Locations');
@@ -33,11 +36,11 @@ function SnapshotFirebaseAdvanced() {
 
   //REALTIME GET FUNCTION
   useEffect(() => {
-    const q = query(colletionRef);
+    const q = query(colletionRef, orderBy('id', 'desc'));
 
     setLoading(true);
-    // const unsub = onSnapshot(q, (querySnapshot) => {
-    const unsub = onSnapshot(colletionRef, (querySnapshot) => {
+    const unsub = onSnapshot(q, (querySnapshot) => { 
+    // const unsub = onSnapshot(colletionRef, (querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
@@ -71,13 +74,27 @@ function SnapshotFirebaseAdvanced() {
       },
       id: id,
     };
-
+    
     try {
+      // se os campos estiverem vazios
+      if (title === '' || desc === '' || coordinate[0] === 0 || coordinate[1] === 0) {
+        alert('Preencha todos os campos');
+        return;
+      }
+      // se os campos estiverem vazios
       const locationRef = doc(colletionRef, newLocation.id.toString());
       await setDoc(locationRef, newLocation);
+
+      // limpar os campos
+      setTitle('');
+      setDesc('');
+      setCoordinate([0, 0]);
+
     } catch (error) {
       console.error(error);
     }
+    // limpar os campos
+    
   }
 
   //DELETE FUNCTION
@@ -101,14 +118,19 @@ function SnapshotFirebaseAdvanced() {
     }
   }
 
+
+
   return (
     <Fragment>
-      <div className='container'>
-        <div className='division'>
+      {/* importar icones do fontAwesome */}
+
+      {/* header */}
+      <div className="container">
+        <div className="division">
           <h1>Localizações</h1>
           <div className="inputBox">
-            <h3>adicionar nova localizacão</h3>
-            <h6>titulo</h6>
+            <h3>Adicionar nova localizacão</h3>
+            <h6>Titulo</h6>
             <input
               type="text"
               value={title}
@@ -131,31 +153,48 @@ function SnapshotFirebaseAdvanced() {
             </div>
             <h6>Description</h6>
             <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
-            <button className='submitButton' onClick={() => addlocation()}>Enviar</button>
           </div>
+          <button className="submitButton" onClick={() => addlocation()}>
+            Enviar
+          </button>
         </div>
         <hr />
         {loading ? <h1>Loading...</h1> : null}
-        <div className='location-list'>
-          {locations.map((location) => (
+        <div className="location-list">
+          {locations.map((location) => ( 
             <div className="location" key={location.id}>
               <h2>{location.titulo}</h2>
+              <div className="line"></div>
               <p>{location.descricao}</p>
-              <p>{location.coordinate['longitude']}</p>
-              <p>{location.coordinate['latitude']}</p>
+              <p>Longitude: {location.coordinate["longitude"]}</p>
+              <p>Latitude: {location.coordinate["latitude"]}</p>
               <div className="mapouter">
                 <div className="gmap_canvas">
-                  <iframe width="400" height="200" id="gmap_canvas" src={`https://maps.google.com/maps?q=${location.coordinate['latitude']},${location.coordinate['longitude']}&t=&z=13&ie=UTF8&iwloc=&output=embed`}>
-                  </iframe>
+                  <iframe
+                    className="map"
+                    id="gmap_canvas"
+                    src={`https://maps.google.com/maps?q=${location.coordinate["latitude"]},${location.coordinate["longitude"]}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                  ></iframe>
                 </div>
               </div>
-              <div>
-                <button className='deleteButton' onClick={() => deleteLocation(location)}>X</button>
-                <button className='defaultButton' onClick={() => editLocation(location)}>Editar</button>
+              <div className="containerbutton">
+                <button
+                  className="deleteButton"
+                  onClick={() => deleteLocation(location)}
+                >
+                  {/* icone delete */}
+                  <FontAwesomeIcon icon={faTrashAlt} />
+
+                </button>
+
               </div>
             </div>
           ))}
         </div>
+      </div>
+      {/* footer */}
+      <div className="footer">
+        <p>© 2021 Snuggle Inc. All rights reserved.</p>
       </div>
     </Fragment>
   );

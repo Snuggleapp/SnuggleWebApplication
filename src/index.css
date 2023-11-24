@@ -2,16 +2,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* font family */
+  font-family: 'Roboto', sans-serif;
 }
 
 .WelcomeDivision {
   display: flex;
   align-items: center;
+  justify-content: center;
   justify-content: space-between;
   padding-left: 5%;
   padding-right: 5%;
-  background-color: blueviolet;
-  height: 50px;
+  background-color: rgb(31, 31, 31);
+  height: 70px;
+  /* sombra */
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(81, 126, 177, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(124, 184, 212, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(109, 193, 218, 0.75);
+  color: rgb(255, 255, 255);
+  
 }
 
 .container {
@@ -53,10 +62,185 @@ button {
   background-color: rgb(116, 21, 21);
 }
 
-.submitButton {
-  background-color: rgb(48, 175, 23)
+
+/* division */
+
+.division {
+  margin-top: 30px;
+  background-color: rgb(255, 255, 255);
+  /* sombra */
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.267);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.274);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.247);
+  padding: 30px;
+  width: 50%;
+  border-radius: 10px;
+  margin-bottom: 50px;
 }
 
-.submitButton:hover {
-  background-color: rgb(32, 116, 16)
+h1 {
+  margin-bottom: 20px;
+  /* tirar bold */
+  font-weight: normal;
+
 }
+h3 {
+  margin-bottom: 20px;
+  /* tirar bold */
+  font-weight: normal;
+}
+
+h6 {
+  margin-bottom: 20px;
+  font-weight: normal;
+  font-size: 15px;
+}
+
+input {
+  /* tirar css padrao */
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 90%;
+  
+}
+/* input ao clicar */
+input:focus {
+  outline: none;
+  border-bottom: 1px solid rgb(102, 177, 187)
+}
+
+textarea{
+  /* tirar css padrao */
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 90%;
+  resize: none;
+}
+
+/* textarea ao clicar */
+textarea:focus {
+  outline: none;
+  border-bottom: 1px solid rgb(102, 177, 187)
+}
+
+.submitButton {
+  width: 50%;
+  background-color: rgb(82, 137, 196);
+  /* deixar botao no centro */
+  margin-left: 25%;
+  margin-right: 25%;
+  padding: 10px;
+  
+
+
+}
+
+/* submit ao clicar */
+.submitButton:hover {
+  background-color: rgb(61, 102, 147);
+}
+
+h2 {
+  margin-bottom: 20px;
+  /* tirar bold */
+  font-weight: normal;
+}
+p {
+  margin-bottom: 20px;
+  /* tirar bold */
+  font-weight: normal;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: rgb(138, 137, 137);
+  margin-bottom: 20px;
+}
+
+.location {
+  background-color: rgb(255, 255, 255);
+  /* sombra */
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.267);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.274);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.247);
+  padding: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  border-radius: 30px;
+
+}
+.location-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 70%;
+}
+
+.map {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 10px;
+  /* sombra */
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.267);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.274);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.247);
+
+}
+
+.containerbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.footer{
+  background-color: rgb(0, 0, 0);
+  width: 100%;
+  color: rgb(255, 255, 255);
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.footer p {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.welcometext{
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+}
+
+.red {
+  height: 100vh;
+  flex: 1;
+  margin: 0;
+}
+
+.blue {
+  height: 100vh;
+  flex: 1;
+  margin: 0;
+}
+
+
