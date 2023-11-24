@@ -103,57 +103,59 @@ function SnapshotFirebaseAdvanced() {
 
   return (
     <Fragment>
-      <div className='division'>
-        <h1>Localizações</h1>
-        <div className="inputBox">
-          <h3>adicionar nova localizacão</h3>
-          <h6>titulo</h6>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <h6>Coordenadas</h6>
-          <div className="inputBoxCoord">
-            <h6>Latitude</h6>
+      <div className='container'>
+        <div className='division'>
+          <h1>Localizações</h1>
+          <div className="inputBox">
+            <h3>adicionar nova localizacão</h3>
+            <h6>titulo</h6>
             <input
-              type="number"
-              value={coordinate[0]}
-              onChange={(e) => handleCoordinateChange(0, e.target.value)}
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
-            <h6>Longitude</h6>
-            <input
-              type="number"
-              value={coordinate[1]}
-              onChange={(e) => handleCoordinateChange(1, e.target.value)}
-            />
+            <h6>Coordenadas</h6>
+            <div className="inputBoxCoord">
+              <h6>Latitude</h6>
+              <input
+                type="number"
+                value={coordinate[0]}
+                onChange={(e) => handleCoordinateChange(0, e.target.value)}
+              />
+              <h6>Longitude</h6>
+              <input
+                type="number"
+                value={coordinate[1]}
+                onChange={(e) => handleCoordinateChange(1, e.target.value)}
+              />
+            </div>
+            <h6>Description</h6>
+            <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
+            <button className='submitButton' onClick={() => addlocation()}>Enviar</button>
           </div>
-          <h6>Description</h6>
-          <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
-          <button className='submitButton' onClick={() => addlocation()}>Enviar</button>
         </div>
-      </div>
-      <hr />
-      {loading ? <h1>Loading...</h1> : null}
-      <div className='location-list'>
-        {locations.map((location) => (
-          <div className="location" key={location.id}>
-            <h2>{location.titulo}</h2>
-            <p>{location.descricao}</p>
-            <p>{location.coordinate['longitude']}</p>
-            <p>{location.coordinate['latitude']}</p>
-            <div className="mapouter">
-              <div className="gmap_canvas">
-                <iframe width="400" height="200" id="gmap_canvas" src={`https://maps.google.com/maps?q=${location.coordinate['latitude']},${location.coordinate['longitude']}&t=&z=13&ie=UTF8&iwloc=&output=embed`}>
-                </iframe>
+        <hr />
+        {loading ? <h1>Loading...</h1> : null}
+        <div className='location-list'>
+          {locations.map((location) => (
+            <div className="location" key={location.id}>
+              <h2>{location.titulo}</h2>
+              <p>{location.descricao}</p>
+              <p>{location.coordinate['longitude']}</p>
+              <p>{location.coordinate['latitude']}</p>
+              <div className="mapouter">
+                <div className="gmap_canvas">
+                  <iframe width="400" height="200" id="gmap_canvas" src={`https://maps.google.com/maps?q=${location.coordinate['latitude']},${location.coordinate['longitude']}&t=&z=13&ie=UTF8&iwloc=&output=embed`}>
+                  </iframe>
+                </div>
+              </div>
+              <div>
+                <button className='deleteButton' onClick={() => deleteLocation(location)}>X</button>
+                <button className='defaultButton' onClick={() => editLocation(location)}>Editar</button>
               </div>
             </div>
-            <div>
-              <button className='deleteButton' onClick={() => deleteLocation(location)}>X</button>
-              <button className='defaultButton' onClick={() => editLocation(location)}>Editar</button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </Fragment>
   );
