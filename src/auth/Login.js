@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 import * as THREE from "three";
-import NET from "vanta/dist/vanta.net.min";
+import CLOUDS from "vanta/dist/vanta.clouds.min";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
@@ -40,7 +40,7 @@ const Login = ({ onLogin }) => {
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(
-        NET({
+        CLOUDS({
           el: "#vanta",
           THREE: THREE,
           color: 0x3fffff,
@@ -56,38 +56,41 @@ const Login = ({ onLogin }) => {
 
   return (
     
-    <div className="loginContainer">
+    <div id="vanta" className="loginContainer">
       <div className="red">
-      <h1>Login</h1>
+        <div className="login">
+      <h1 className="loginText">Login</h1>
        <div className="inputBoxLogin">
-          <h3>Insira seus Dados</h3>
+          <h3 className="textLogin">Insira seus dados</h3>
           <input
+          className="inputLogin"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
+            placeholder="Email"
             />
           <input
+          className="inputLogin"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
+            placeholder="Password"
             />
         </div>
         <div className="buttonContainer">
-          <button className="defaultButton" onClick={login}>
+          <button className="buttonLogin" onClick={login}>
             Login
           </button>
-          <button className="defaultButton" onClick={register}>
+          <button className="buttonRegister" onClick={register}>
             Register
           </button>
       </div>
       </div>
+      </div>
       
-      <div id="vanta" className="blue">
+
         
 
-      </div>
     </div>
 
   );

@@ -16,18 +16,41 @@ const Welcome = () => {
     signOut(auth);
   };
 
+
+  
+  
+
   return (
-    <>
-      <div className="WelcomeDivision">
-        <h9 className="welcometext">{`Bem vindo ${currentUserEmail} !!`}</h9>
-        <div className="buttonContainer">
-          <button className="defaultButton" onClick={logOut}>
-          <FontAwesomeIcon style={{ marginRight: "10px"}} icon={faSignOutAlt} />
-            Sair
+    <div className="containerMenu">
+      {/* header */}
+      <div className="header">
+
+      </div>
+      <div className="menu">
+        <div className="menuWelcome">
+          <h1 className="welcome">Welcome</h1>
+
+          <h2 className="email">{currentUserEmail}</h2>
+          <div className="menuToggle">
+            {/* botao para ir para a tela principal */}
+            <a className="btnMain">Main</a>
+            {/* botao para ir para a tela de adicionar postos */}
+            <a href="/UserList" className="btnAdd">User List</a>
+
+            {/* botao para ver os usuarios */}
+            <a className="btnUsers">Users</a>
+          </div>
+
+          <button className="logout" onClick={logOut}>
+            <FontAwesomeIcon icon={faSignOutAlt} />
           </button>
         </div>
       </div>
-    </>
+      {/* footer */}
+      <div className="footer">
+        <p>© 2021 Snuggle Inc. All rights reserved.</p>
+      </div>
+    </div>
   );
 };
 

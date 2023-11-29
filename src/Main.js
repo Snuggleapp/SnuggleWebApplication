@@ -132,6 +132,7 @@ function SnapshotFirebaseAdvanced() {
             <h3>Adicionar nova localizacão</h3>
             <h6>Titulo</h6>
             <input
+              className="input"
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -140,12 +141,14 @@ function SnapshotFirebaseAdvanced() {
             <div className="inputBoxCoord">
               <h6>Latitude</h6>
               <input
+                className="input"
                 type="number"
                 value={coordinate[0]}
                 onChange={(e) => handleCoordinateChange(0, e.target.value)}
               />
               <h6>Longitude</h6>
               <input
+                className="input"
                 type="number"
                 value={coordinate[1]}
                 onChange={(e) => handleCoordinateChange(1, e.target.value)}
@@ -161,7 +164,7 @@ function SnapshotFirebaseAdvanced() {
         <hr />
         {loading ? <h1>Loading...</h1> : null}
         <div className="location-list">
-          {locations.map((location) => ( 
+          {locations.map((location) => (
             <div className="location" key={location.id}>
               <h2>{location.titulo}</h2>
               <div className="line"></div>
@@ -184,18 +187,13 @@ function SnapshotFirebaseAdvanced() {
                 >
                   {/* icone delete */}
                   <FontAwesomeIcon icon={faTrashAlt} />
-
                 </button>
-
               </div>
             </div>
           ))}
         </div>
       </div>
-      {/* footer */}
-      <div className="footer">
-        <p>© 2021 Snuggle Inc. All rights reserved.</p>
-      </div>
+
     </Fragment>
   );
 }
