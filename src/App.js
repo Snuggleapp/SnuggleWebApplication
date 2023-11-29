@@ -5,7 +5,7 @@ import Welcome from './Welcome';
 import SnapshotFirebaseAdvanced from './Main';
 
 export const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
