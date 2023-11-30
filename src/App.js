@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { AuthProvider } from './auth/Auth';
-import Login from './auth/Login';
-import Welcome from './Welcome';
-import SnapshotFirebaseAdvanced from './Main';
+import React, { useState } from "react";
+import { AuthProvider } from "./auth/Auth";
+import Login from "./auth/Login";
+import Welcome from "./Welcome";
+import SnapshotFirebaseAdvanced from "./Main";
 
 export const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,16 +12,18 @@ export const App = () => {
   };
 
   return (
-    <AuthProvider>
-      {isLoggedIn ? (
-        <>
-          <Welcome />
-          <SnapshotFirebaseAdvanced />
-        </>
-      ) : (
-        <Login onLogin={handleLogin} />
-      )}
-    </AuthProvider>
+    <main className="dark">
+      <AuthProvider>
+        {isLoggedIn ? (
+          <>
+            <Welcome />
+            <SnapshotFirebaseAdvanced />
+          </>
+        ) : (
+          <Login onLogin={handleLogin} />
+        )}
+      </AuthProvider>
+    </main>
   );
 };
 
