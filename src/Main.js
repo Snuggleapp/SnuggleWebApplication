@@ -55,14 +55,13 @@ function SnapshotFirebaseAdvanced() {
         items.push(doc.data());
       });
       setLocations(items);
-      setId(items.length + 1);
       setLoading(false);
     });
     return () => {
       unsub();
     };
     // eslint-disable-next-line
-  }, []);
+  }, [autoComplete]);
 
   const handleCoordinateChange = (index, value) => {
     const updatedCoordinate = [...coordinate];
@@ -80,7 +79,7 @@ function SnapshotFirebaseAdvanced() {
         latitude: Number(coordinate[0]),
         longitude: Number(coordinate[1]),
       },
-      id: id,
+      id: Number(id),
     };
 
     try {
@@ -102,6 +101,7 @@ function SnapshotFirebaseAdvanced() {
       setTitle("");
       setDesc("");
       setCoordinate([0, 0]);
+      setId(0)
     } catch (error) {
       console.error(error);
     }
@@ -154,10 +154,12 @@ function SnapshotFirebaseAdvanced() {
 
   const handleSelect = (value) => {
     //make a array with the coordinates
-    if(value === ""){
+    if (value === "") {
       return
     }
     let coordinateArr = value.split(",");
+    console.log(coordinateArr[2]);
+    setId(coordinateArr[2]);
     setCoordinate(coordinateArr);
   };
 
@@ -183,7 +185,7 @@ function SnapshotFirebaseAdvanced() {
               onSelectionChange={handleSelect}
             >
               {autoComplete.map((end) => (
-                <AutocompleteItem key={[end.lat, end.lon]}>
+                <AutocompleteItem key={[end.lat, end.lon, end.place_id]}>
                   {end.display_name}
                 </AutocompleteItem>
               ))}

@@ -23,6 +23,7 @@ function MapCard({ location, deleteLocation }) {
         <p>{location.descricao}</p>
         <p>Longitude: {location.coordinate["longitude"]}</p>
         <p>Latitude: {location.coordinate["latitude"]}</p>
+        <p>ID: {location.id}</p>
         <iframe
           className="w-full rounded-xl"
           id="gmap_canvas"
